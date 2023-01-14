@@ -40,7 +40,8 @@ class CartProvider with ChangeNotifier {
               cartQuantity: 1,
               cartTitle: title));
     }
-    print(_items[1]);
+    var ite = _items.values.toList();
+    print(ite[0].cartPrice);
     notifyListeners();
   }
 }

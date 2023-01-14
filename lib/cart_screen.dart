@@ -13,12 +13,24 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cis = Provider.of<CartProvider>(context);
-    //cis.items.
+    //cis.items.containsKey(key);
     return Scaffold(
       appBar: AppBar(
         title: Text('Cart'),
       ),
-      body: CartItemS('test', 20),
+      body: cis.items == null
+          ? Center(
+              child: Text('empty'),
+            )
+          : Container(
+            height: 300,
+            child: ListView.builder(
+                itemCount: cis.items.length,
+                itemBuilder: (_, i) => CartItemS(cis.items[i]!.cartTitle,
+                    cis.items[i]!.cartPrice, cis.items[i]!.cartId),
+              ),
+          ),
+      //CartItemS('test', 20),
     );
   }
 }
